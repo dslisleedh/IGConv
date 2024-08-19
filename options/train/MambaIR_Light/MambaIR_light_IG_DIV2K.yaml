@@ -1,0 +1,126 @@
+name: MambaIR_light_IG_DIV2K
+model_type: MambaMSModel
+num_gpu: 4
+manual_seed: 0
+
+# dataset and data loader settings
+datasets:
+  train:
+    name: DIV2K
+    type: RandomScaleDownsampleImageDataset
+    random_scales: [2, 3, 4]
+    dataroot_gt: /home2/leedh97/datasets/DIV2K/DIV2K_train_HR_sub.lmdb
+    filename_tmpl: '{}'
+    io_backend:
+      type: lmdb
+
+    lq_size: 64
+    use_hflip: true
+    use_rot: true
+
+    # data loader
+    use_shuffle: true
+    num_worker_per_gpu: 8
+    batch_size_per_gpu: 8
+    dataset_enlarge_ratio: 100
+    prefetch_mode: cuda
+    pin_memory: true
+
+  val_1:
+    name: Set14X2
+    type: FixedScalePairedImageDataset
+    dataroot_gt: /home2/prof/ro/dslisleedh/SAFMN/datasets/Set14/HR
+    dataroot_lq: /home2/prof/ro/dslisleedh/SAFMN/datasets/Set14/LR_bicubic/X2
+    filename_tmpl: '{}x2'
+    ds_scale: 2
+    io_backend:
+      type: disk
+
+  val_2:
+    name: Set14X3
+    type: FixedScalePairedImageDataset
+    dataroot_gt: /home2/prof/ro/dslisleedh/SAFMN/datasets/Set14/HR
+    dataroot_lq: /home2/prof/ro/dslisleedh/SAFMN/datasets/Set14/LR_bicubic/X3
+    filename_tmpl: '{}x3'
+    ds_scale: 3
+    io_backend:
+      type: disk  
+
+  val_3:
+    name: Set14X4
+    type: FixedScalePairedImageDataset
+    dataroot_gt: /home2/prof/ro/dslisleedh/SAFMN/datasets/Set14/HR
+    dataroot_lq: /home2/prof/ro/dslisleedh/SAFMN/datasets/Set14/LR_bicubic/X4
+    filename_tmpl: '{}x4'
+    ds_scale: 4
+    io_backend:
+      type: disk
+  
+# network structures
+network_g:
+  type: MambaIR
+  upscale: 2
+  in_chans: 3
+  img_size: 64
+  img_range: 1.
+  d_state: 16
+  depths: [6, 6, 6, 6]
+  embed_dim: 60
+  mlp_ratio: 1.5
+  upsampler: 'igconv'
+  resi_connection: '1conv'
+  return_skip: false
+  geo_ensemble: false
+
+# path
+path:
+  pretrain_network_g: ~
+  strict_load_g: true
+  resume_state: ~
+
+# training settings
+train:
+  optim_g:
+    type: Adam
+    lr: !!float 2e-4
+    weight_decay: 0
+    betas: [0.9, 0.99]
+
+  scheduler:
+    type: MultiStepLR
+    milestones: [250000, 400000, 450000, 475000]
+    gamma: 0.5
+
+  total_iter: 500000
+  warmup_iter: -1  # no warm up
+
+  # losses
+  pixel_opt:
+    type: L1Loss
+    loss_weight: 1.0
+    reduction: mean
+
+# validation settings
+val:
+  val_freq: !!float 5e3
+  save_img: false
+
+  metrics:
+    psnr: # metric name, can be arbitrary
+      type: calculate_psnr
+      crop_border: 2
+      test_y_channel: true
+
+# logging settings
+logger:
+  print_freq: 100
+  save_checkpoint_freq: !!float 5e3
+  use_tb_logger: true
+  wandb:
+    project: ~
+    resume_id: ~
+
+# dist training settings
+dist_params:
+  backend: nccl
+  port: 29500
