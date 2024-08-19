@@ -40,3 +40,44 @@ So, install these carefully.
 
 ### NOTE
 Do Not Install BasicSR using PIP !!! 
+
+## Train
+
+```bash
+python igconv/train.py -opt $CONFIG_PATH
+```
+
+## Test
+
+```bash
+python igconv/test.py -opt $CONFIG_PATH
+```
+
+## Results
+
+<details>
+<summary>Quantitative Results</summary>
+
+### DIV2K
+![image](https://github.com/dslisleedh/IGConv/blob/main/figs/Quantitative_DIV2K.png)
+### DF2K
+![image](https://github.com/dslisleedh/IGConv/blob/main/figs/Quantitative_DF2K.png)
+</details>
+
+## License
+This project is released under the MIT license.
+
+## Acknowledgement
+Our work is based on the implementation of many studies, and we are very grateful to the authors of [these studies](https://github.com/dslisleedh/IGConv/blob/main/licences/readme.md). 
+- BasicSR
+- NeoSR
+- DySample
+- SwinIR
+- SRFormer
+- HiT-SR
+- EDSR
+- RCAN
+- RDN
+- SMFANet
+- MambaIR
+
