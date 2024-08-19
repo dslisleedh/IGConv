@@ -1,0 +1,182 @@
+name: SMFANet_IGConv_DF2K
+model_type: MSRModel
+num_gpu: 1  # set num_gpu: 0 for cpu mode
+manual_seed: 0
+
+datasets:
+  test_1:  # the 1st test dataset
+    name: Set5X2
+    type: FixedScalePairedImageDataset
+    dataroot_gt: /home/dslisleedh/SAFMN/datasets/Set5/HR
+    dataroot_lq: /home/dslisleedh/SAFMN/datasets/Set5/LR_bicubic/X2
+    filename_tmpl: '{}x2'
+    ds_scale: 2
+    io_backend:
+      type: disk
+
+  test_2:  # the 2nd test dataset
+    name: Set14X2
+    type: FixedScalePairedImageDataset
+    dataroot_gt: /home/dslisleedh/SAFMN/datasets/Set14/HR
+    dataroot_lq: /home/dslisleedh/SAFMN/datasets/Set14/LR_bicubic/X2
+    filename_tmpl: '{}x2'
+    ds_scale: 2
+    io_backend:
+      type: disk
+  
+  test_3:  # the 3rd test dataset
+    name: B100X2
+    type: FixedScalePairedImageDataset
+    dataroot_gt: /home/dslisleedh/SAFMN/datasets/B100/HR
+    dataroot_lq: /home/dslisleedh/SAFMN/datasets/B100/LR_bicubic/X2
+    filename_tmpl: '{}x2'
+    ds_scale: 2
+    io_backend:
+      type: disk
+
+  test_4:  # the 4th test dataset
+    name: Urban100X2
+    type: FixedScalePairedImageDataset
+    dataroot_gt: /home/dslisleedh/SAFMN/datasets/Urban100/HR
+    dataroot_lq: /home/dslisleedh/SAFMN/datasets/Urban100/LR_bicubic/X2
+    filename_tmpl: '{}x2'
+    ds_scale: 2
+    io_backend:
+      type: disk
+
+  test_5:  # the 5th test dataset
+    name: Manga109X2
+    type: FixedScalePairedImageDataset
+    dataroot_gt: /home/dslisleedh/SAFMN/datasets/Manga109/HR
+    dataroot_lq: /home/dslisleedh/SAFMN/datasets/Manga109/LR_bicubic/X2
+    filename_tmpl: '{}x2'
+    ds_scale: 2
+    io_backend:
+      type: disk
+
+  test_6:  # the 6th test dataset
+    name: Set5X3
+    type: FixedScalePairedImageDataset
+    dataroot_gt: /home/dslisleedh/SAFMN/datasets/Set5/HR
+    dataroot_lq: /home/dslisleedh/SAFMN/datasets/Set5/LR_bicubic/X3
+    filename_tmpl: '{}x3'
+    ds_scale: 3
+    io_backend:
+      type: disk
+
+  test_7:  # the 7th test dataset
+    name: Set14X3
+    type: FixedScalePairedImageDataset
+    dataroot_gt: /home/dslisleedh/SAFMN/datasets/Set14/HR
+    dataroot_lq: /home/dslisleedh/SAFMN/datasets/Set14/LR_bicubic/X3
+    filename_tmpl: '{}x3'
+    ds_scale: 3
+    io_backend:
+      type: disk
+
+  test_8:  # the 8th test dataset
+    name: B100X3
+    type: FixedScalePairedImageDataset
+    dataroot_gt: /home/dslisleedh/SAFMN/datasets/B100/HR
+    dataroot_lq: /home/dslisleedh/SAFMN/datasets/B100/LR_bicubic/X3
+    filename_tmpl: '{}x3'
+    ds_scale: 3
+    io_backend:
+      type: disk
+
+  test_9:  # the 9th test dataset
+    name: Urban100X3
+    type: FixedScalePairedImageDataset
+    dataroot_gt: /home/dslisleedh/SAFMN/datasets/Urban100/HR
+    dataroot_lq: /home/dslisleedh/SAFMN/datasets/Urban100/LR_bicubic/X3
+    filename_tmpl: '{}x3'
+    ds_scale: 3
+    io_backend:
+      type: disk
+
+  test_10:  # the 10th test dataset
+    name: Manga109X3
+    type: FixedScalePairedImageDataset
+    dataroot_gt: /home/dslisleedh/SAFMN/datasets/Manga109/HR
+    dataroot_lq: /home/dslisleedh/SAFMN/datasets/Manga109/LR_bicubic/X3
+    filename_tmpl: '{}x3'
+    ds_scale: 3
+    io_backend:
+      type: disk
+
+  test_11:  # the 11th test dataset
+    name: Set5X4
+    type: FixedScalePairedImageDataset
+    dataroot_gt: /home/dslisleedh/SAFMN/datasets/Set5/HR
+    dataroot_lq: /home/dslisleedh/SAFMN/datasets/Set5/LR_bicubic/X4
+    filename_tmpl: '{}x4'
+    ds_scale: 4
+    io_backend:
+      type: disk
+
+  test_12:  # the 12th test dataset
+    name: Set14X4
+    type: FixedScalePairedImageDataset
+    dataroot_gt: /home/dslisleedh/SAFMN/datasets/Set14/HR
+    dataroot_lq: /home/dslisleedh/SAFMN/datasets/Set14/LR_bicubic/X4
+    filename_tmpl: '{}x4'
+    ds_scale: 4
+    io_backend:
+      type: disk
+
+  test_13:  # the 13th test dataset
+    name: B100X4
+    type: FixedScalePairedImageDataset
+    dataroot_gt: /home/dslisleedh/SAFMN/datasets/B100/HR
+    dataroot_lq: /home/dslisleedh/SAFMN/datasets/B100/LR_bicubic/X4
+    filename_tmpl: '{}x4'
+    ds_scale: 4
+    io_backend:
+      type: disk
+
+  test_14:  # the 14th test dataset
+    name: Urban100X4
+    type: FixedScalePairedImageDataset
+    dataroot_gt: /home/dslisleedh/SAFMN/datasets/Urban100/HR
+    dataroot_lq: /home/dslisleedh/SAFMN/datasets/Urban100/LR_bicubic/X4
+    filename_tmpl: '{}x4'
+    ds_scale: 4
+    io_backend:
+      type: disk
+
+  test_15:  # the 15th test dataset
+    name: Manga109X4
+    type: FixedScalePairedImageDataset
+    dataroot_gt: /home/dslisleedh/SAFMN/datasets/Manga109/HR
+    dataroot_lq: /home/dslisleedh/SAFMN/datasets/Manga109/LR_bicubic/X4
+    filename_tmpl: '{}x4'
+    ds_scale: 4
+    io_backend:
+      type: disk
+
+# network structures
+network_g:
+  type: SMFANetIG
+  dim: 48
+  n_blocks: 12
+  ffn_scale: 2
+  upscaling_factor: 2
+
+# path
+path:
+  pretrain_network_g: ./igconv_pretrained/SMFANet/SMFANet_IGConv_DF2K.pth
+  strict_load_g: true
+  param_key_g: params_ema
+
+# validation settings
+val:
+  save_img: true
+  suffix: ~  # add suffix to saved images, if None, use exp name
+
+  metrics:  # Crop border is given by model
+    psnr: # metric name, can be arbitrary
+      type: calculate_psnr
+      test_y_channel: true
+    ssim:
+      type: calculate_ssim
+      test_y_channel: true
