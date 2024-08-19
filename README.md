@@ -17,3 +17,25 @@ As a result, SRFormer-IGConv+ achieves a remarkable 0.25dB improvement in PSNR a
 This repository is an official implementation of the paper "Implicit Grid Convolution for Multi-Scale Image Super-Resolution", Arxiv, 2024.
 
 by Dongheon Lee, Seokju Yun, and Youngmin Ro
+
+
+## Installation
+
+```bash
+conda create -n igconv python=3.10
+conda activate igconv
+conda install pytorch==2.2.0 torchvision==0.17.0 torchaudio==2.2.0 pytorch-cuda=11.8 -c pytorch -c nvidia
+pip install -r requirements.txt 
+python setup.py develop
+```
+
+### Optional packages (for MambaIR)
+```bash
+pip install causal_conv1d
+pip install mamba_ssm
+```
+Unlike pytorch which utilizes downloaded(whl or conda) cuda-runtime, these packages utilize "local" cuda-runtime.
+So, install these carefully.
+
+### NOTE
+Do Not Install BasicSR using PIP !!! 

@@ -1,0 +1,14 @@
+numpy
+opencv-python
+requests
+torch
+torchvision
+einops
+fvcore
+matplotlib
+protobuf<4.0.0
+tb-nightly
+timm
+scipy
+lmdb
+# Do Not Install BasicSR using pip

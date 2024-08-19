@@ -1,0 +1,110 @@
+# general settings
+name: HiT_SRF_IG_DIV2K
+model_type: MambaMSModel  # for chop_forward.
+scale: 2
+num_gpu: 4
+manual_seed: 1226
+
+# dataset and data loader settings
+datasets:
+  train:
+    name: DIV2K
+    type: RandomScaleDownsampleImageDataset
+    random_scales: [2, 3, 4]
+    dataroot_gt: /home2/leedh97/datasets/DIV2K/DIV2K_train_HR_sub.lmdb
+    filename_tmpl: '{}'
+    io_backend:
+      type: lmdb
+
+    lq_size: 64
+    use_hflip: true
+    use_rot: true
+
+    # data loader
+    use_shuffle: true
+    num_worker_per_gpu: 4
+    batch_size_per_gpu: 16
+    dataset_enlarge_ratio: 1
+    # prefetch_mode: ~
+    prefetch_mode: cuda
+    pin_memory: true
+
+  val_1:
+    name: Urban100X2
+    type: FixedScalePairedImageDataset
+    dataroot_gt: /home2/prof/ro/dslisleedh/SAFMN/datasets/Urban100/HR
+    dataroot_lq: /home2/prof/ro/dslisleedh/SAFMN/datasets/Urban100/LR_bicubic/X2
+    filename_tmpl: '{}x2'
+    ds_scale: 2
+    io_backend:
+      type: disk
+
+# network structures
+network_g:
+  type: HiT_SRF
+  upscale: 2
+  in_chans: 3
+  img_size: 64
+  base_win_size: [8,8]
+  img_range: 1.
+  depths: [6,6,6,6]
+  embed_dim: 60
+  num_heads: [6,6,6,6]
+  expansion_factor: 2
+  resi_connection: '1conv'
+  hier_win_ratios: [0.5,1,2,4,6,8]
+  upsampler: 'igconv'
+  geo_ensemble: false
+
+# path
+path:
+  pretrain_network_g: ~
+  strict_load_g: True
+  resume_state: ~
+
+# training settings
+train:
+  optim_g:
+    type: Adam
+    lr: !!float 5e-4
+    weight_decay: 0
+    betas: [0.9, 0.99]
+
+  scheduler:
+    type: MultiStepLR
+    milestones: [250000, 400000, 450000, 475000]
+    gamma: 0.5
+
+  total_iter: 500000
+  warmup_iter: -1  # no warm up
+
+  # losses
+  pixel_opt:
+    type: L1Loss
+    loss_weight: 1.0
+    reduction: mean
+
+# validation settings
+val:
+  val_freq: !!float 5000
+  save_img: False
+
+  metrics:
+    psnr: # metric name, can be arbitrary
+      type: calculate_psnr
+      crop_border: 2
+      test_y_channel: True
+
+# logging settings
+logger:
+  print_freq: 100
+  save_checkpoint_freq: !!float 5e3
+  use_tb_logger: True
+  wandb:
+    project: ~
+    resume_id: ~
+
+# dist training settings
+dist_params:
+  backend: nccl
+  port: 29500
