@@ -13,7 +13,6 @@ Our extensive experiments demonstrate that training multiple scales with a singl
 Furthermore, we propose IGConv+, which addresses spectral bias and input-independent upsampling and uses ensemble prediction to improve performance. 
 As a result, SRFormer-IGConv+ achieves a remarkable 0.25dB improvement in PSNR at Urban100x4 while reducing the training budget, stored parameters, and inference cost compared to the existing SRFormer.
 
-
 This repository is an official implementation of the paper "Implicit Grid Convolution for Multi-Scale Image Super-Resolution", Arxiv, 2024.
 
 by Dongheon Lee, Seokju Yun, and Youngmin Ro
@@ -55,8 +54,10 @@ python igconv/test.py -opt $CONFIG_PATH
 
 ## Results
 
+![image](https://github.com/dslisleedh/IGConv/blob/main/figs/teaser.png)
+
 <details>
-<summary>Quantitative Results</summary>
+<summary>Tables</summary>
 
 ### DIV2K
 ![image](https://github.com/dslisleedh/IGConv/blob/main/figs/Quantitative_DIV2K.png)
