@@ -18,7 +18,7 @@ This repository is an official implementation of the paper "Implicit Grid Convol
 
 by Dongheon Lee, Seokju Yun, and Youngmin Ro
 
-[Paper](https://github.com/dslisleedh/IGConv), [PretrainedModels](https://github.com/dslisleedh/IGConv/releases/tag/v1.0.0)
+[[Paper]](https://arxiv.org/abs/2408.09674), [[PretrainedModels]](https://github.com/dslisleedh/IGConv/releases/tag/v1.0.0)
 
 ## Installation
 
