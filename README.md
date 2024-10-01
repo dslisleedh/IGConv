@@ -42,8 +42,27 @@ Do Not Install BasicSR using PIP !!!
 
 ## Train
 
+### Single GPU (NOT RECOMMENDED!!!)
 ```bash
 python igconv/train.py -opt $CONFIG_PATH
+```
+Gradient accumulation for averaging gradients over multiple sub-batches is not implemented in this code. 
+Therefore, we highly recommend running our code on multiple GPUs.
+In all cases, we used 4 GPUs (RTX3090 or A6000).
+
+### Multi-GPU (Local)
+```bash
+PYTHONPATH="./:${PYTHONPATH}" CUDA_VISIBLE_DEVICES=0,1,2,3 python -m torch.distributed.launch\
+  --nproc_per_node=4 --master_port=25000 \
+ igconv/train.py -opt $CONFIG_PATH --launcher pytorch
+```
+
+### Multi-GPU (SLURM)
+```bash
+PYTHONPATH="./:${PYTHONPATH}" \
+GLOG_vmodule=MemcachedClient=-1 \
+srun -p $PARTITION --mpi=pmi2 --gres $GPU --ntasks=4 --cpus-per-task 16 --kill-on-bad-exit=1 \
+python -u igconv/train.py -opt $CONFIG_PATH --launcher="slurm"
 ```
 
 ## Test
