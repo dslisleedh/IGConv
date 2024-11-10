@@ -11,4 +11,5 @@ tb-nightly
 timm
 scipy
 lmdb
+fairscale
 # Do Not Install BasicSR using pip

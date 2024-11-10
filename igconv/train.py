@@ -1,7 +1,3 @@
-"""
-We re-implemented restormer's training pipeline to support current BasicSR's training pipeline.
-https://github.com/swz30/Restormer/blob/main/basicsr/train.py
-"""
 import datetime
 import logging
 import math
