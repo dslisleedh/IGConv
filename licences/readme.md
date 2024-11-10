@@ -13,3 +13,5 @@
 | [`RDN`](https://github.com/yjn870/RDN-pytorch)								                                                 | [Apache 2.0](https://github.com/yjn870/RDN-pytorch/blob/master/LICENSE)						                      |
 | [`SMFANet`](https://github.com/Zheng-MJ/SMFANet)								                                               | [Apache 2.0](https://github.com/Zheng-MJ/SMFANet/blob/main/LICENSE.txt)						                      |
 | [`MambaIR`](https://github.com/csguoh/MambaIR)								                                               | [Apache 2.0](https://github.com/csguoh/MambaIR/blob/main/LICENSE)						                      |
+| [`HAT`](https://github.com/XPixelGroup/HAT)								                                               | [Apache 2.0](https://github.com/XPixelGroup/HAT/blob/main/LICENSE)						                      |
+| [`ATD`](https://github.com/XPixelGroup/HAT)								                                               | [Apache 2.0](https://github.com/LabShuHangGU/Adaptive-Token-Dictionary/blob/main/LICENSE.txt)						                      |
