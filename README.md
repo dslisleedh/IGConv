@@ -78,10 +78,9 @@ python igconv/test.py -opt $CONFIG_PATH
 <details>
 <summary>Tables</summary>
 
-### DIV2K
 ![image](https://github.com/dslisleedh/IGConv/blob/main/figs/Quantitative_DIV2K.png)
-### DF2K
 ![image](https://github.com/dslisleedh/IGConv/blob/main/figs/Quantitative_DF2K.png)
+![image](https://github.com/dslisleedh/IGConv/blob/main/figs/Quantitative_PT.png)
 </details>
 
 ## License
