@@ -2,16 +2,14 @@
 
 ![image](https://github.com/dslisleedh/IGConv/blob/main/figs/OverallArchitecture.png)
 
->Recently, Super-Resolution (SR) achieved significant performance improvement by employing neural networks. 
-Most SR methods conventionally train a single model for each targeted scale, which increases redundancy in training and deployment in proportion to the number of scales targeted.
-This paper challenges this conventional fixed-scale approach.
-Our preliminary analysis reveals that, surprisingly, encoders trained at different scales extract similar features from images.
-Furthermore, the commonly used scale-specific upsampler, Sub-Pixel Convolution (SPConv), exhibits significant inter-scale correlations.
-Based on these observations, we propose a framework for training multiple integer scales simultaneously with a single model. 
-We use a single encoder to extract features and introduce a novel upsampler, Implicit Grid Convolution (IGConv), which integrates SPConv at all scales within a single module to predict multiple scales.
-Our extensive experiments demonstrate that training multiple scales with a single model reduces the training budget and stored parameters by one-third while achieving equivalent inference latency and comparable performance.
-Furthermore, we propose IGConv+, which addresses spectral bias and input-independent upsampling and uses ensemble prediction to improve performance. 
-As a result, SRFormer-IGConv+ achieves a remarkable 0.25dB improvement in PSNR at Urban100x4 while reducing the training budget, stored parameters, and inference cost compared to the existing SRFormer.
+>For Image Super-Resolution (SR), it is common to train and evaluate scale-specific models composed of an encoder and upsampler for each targeted scale. 
+Consequently, many SR studies encounter substantial training times and complex deployment requirements.
+In this paper, we address this limitation by training and evaluating multiple scales simultaneously. 
+Notably, we observe that encoder features are similar across scales and that the Sub-Pixel Convolution (SPConv), widely-used scale-specific upsampler, exhibits strong inter-scale correlations in its functionality.
+Building on these insights, we propose a multi-scale framework that employs a single encoder in conjunction with Implicit Grid Convolution (IGConv), our novel upsampler, which unifies SPConv across all scales within a single module.
+Extensive experiments demonstrate that our framework achieves comparable performance to existing fixed-scale methods while reducing the training budget and stored parameters three-fold and maintaining the same latency. 
+Additionally, we propose IGConv$^{+}$ to improve performance further by addressing spectral bias and allowing input-dependent upsampling and ensembled prediction. 
+As a result, ATD-IGConv$^{+}$ achieves a notable 0.21dB improvement in PSNR on Urban100$\times$4, while also reducing the training budget, stored parameters, and inference cost compared to the existing ATD.
 
 This repository is an official implementation of the paper "Implicit Grid Convolution for Multi-Scale Image Super-Resolution", Arxiv, 2024.
 
